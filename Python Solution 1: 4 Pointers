@@ -1,0 +1,19 @@
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        if not height:
+            return 0
+        validL = height[0]
+        validR = height[len(height)-1]
+        L = 0
+        R = len(height)-1
+        ans = 0
+        while L < R:
+            if validL < validR:
+                L=L+1
+                validL = max(validL, height[L])
+                ans = ans + (validL-height[L])
+            else:
+                R=R-1
+                validR = max(validR, height[R])
+                ans = ans + (validR-height[R])
+        return ans
